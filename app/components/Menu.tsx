@@ -123,10 +123,22 @@ function Menu({ currentPokemon }: menuProps) {
           </div>
 
           <p className="font-bold mt-5">EVOLUTION CHAIN</p>
-          <div>
+          <div className="flex flex-row gap-5">
             <p>{menuData.evolutions.species.name}</p>
             {menuData.evolutions.evolves_to ? (
-              <p>{menuData.evolutions.evolves_to[0].species.name}</p>
+              <div className="flex flex-row gap-5">
+                <p>{menuData.evolutions.evolves_to[0].species.name}</p>
+                {menuData.evolutions.evolves_to[0]?.evolves_to ? (
+                  <p>
+                    {
+                      menuData.evolutions.evolves_to[0].evolves_to[0]?.species
+                        ?.name
+                    }
+                  </p>
+                ) : (
+                  <p></p>
+                )}
+              </div>
             ) : (
               <p></p>
             )}

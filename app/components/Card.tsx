@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useState } from "react";
 
@@ -43,25 +44,28 @@ function Card({ pokemon, handlePressCard }: cardProps) {
     fetchPokeData();
   }, [pokemon]);
   return (
-    <div className="">
+    <div className=" flex flex-col justify-center items-center border rounded-md min-w-32 min-h-48">
       {pokeData ? (
-        <div>
+        <div className=" flex flex-col justify-center items-center border rounded-md min-w-32 max-h-36">
           <p>{pokeData.id}</p>
           <button
+            className="max-w-20  h-20  p-1 border"
             onClick={() => {
               handlePressCard(pokemon);
             }}
           >
-            <img src={pokeData.sprite} alt="no image"></img>
+            <img className="" src={pokeData.sprite} alt="no image"></img>
           </button>
 
           <p>{pokeData.name}</p>
-          {pokeData.types.map((type, i) => {
-            return <p key={i}> {type.type.name}</p>;
-          })}
+          <div className="flex flex-row justify-around items-center gap-2">
+            {pokeData.types.map((type, i) => {
+              return <p key={i}> {type.type.name}</p>;
+            })}
+          </div>
         </div>
       ) : (
-        <p>No data</p>
+        <div className=" flex flex-col justify-center items-center border rounded-md min-w-32"></div>
       )}
     </div>
   );

@@ -1,20 +1,32 @@
 import React from "react";
 
 interface navigationProps {
-  handleNewRequest: (url: string) => void;
+  handlePrevNavigation: (page: number) => void;
+  handleNextNavigation: (page: number) => void;
+  currentPage: number;
 }
 
-function Navigation({ handleNewRequest }: navigationProps) {
+function Navigation({
+  handleNextNavigation,
+  handlePrevNavigation,
+  currentPage,
+}: navigationProps) {
   return (
-    <div>
+    <div className="flex flex-row gap-5">
       <button
         onClick={() => {
-          handleNewRequest(
-            "https://pokeapi.co/api/v2/pokemon?limit=9&offset=9"
-          );
+          handlePrevNavigation(currentPage);
         }}
       >
-        Press
+        PREV
+      </button>
+
+      <button
+        onClick={() => {
+          handleNextNavigation(currentPage);
+        }}
+      >
+        NEXT
       </button>
     </div>
   );
